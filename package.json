@@ -1,0 +1,21 @@
+{
+  "name": "electron_editor_texto",
+  "version": "1.0.0",
+  "description": "App Electron para edição de texto.",
+  "main": "build/main.js",
+  "scripts": {
+    "start": "npm run compile && electron .",
+    "compile":"tsc && copyfiles -a src/pages/index/* build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "copyfiles": "^2.4.1",
+    "electron": "^11.2.1",
+    "typescript": "^4.1.3"
+  },
+  "author": "Guilherme Rocha Muzi Franco",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^7.10.14"
+  }
+}
