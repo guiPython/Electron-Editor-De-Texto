@@ -9,17 +9,18 @@ async function createWindow() {
     window = new BrowserWindow({
         width: 800,
         height: 600,
+        frame: false,
         webPreferences:{
+            enableRemoteModule: true, 
             nodeIntegration: true
         }
     })
-
+    window.webContents.openDevTools()
     await window.loadFile(path.resolve(__dirname, "./src/pages/index/index.html"))
     file.createFile()
 }
 
-async function createMenu() {
-    let menuTemplate: Electron.MenuItemConstructorOptions[] = [
+let menuTemplate: Electron.MenuItemConstructorOptions[] = [
         {
             label: "Arquivo",
             submenu: [
@@ -88,13 +89,12 @@ async function createMenu() {
         }
 ]
 
-    let menu = Menu.buildFromTemplate(menuTemplate)
-    Menu.setApplicationMenu(menu)
-}
+var menu = Menu.buildFromTemplate(menuTemplate)
+Menu.setApplicationMenu(menu)
+
 
 app.whenReady().then( async () => 
     {
-        createMenu()
         await createWindow()
     }
 )
@@ -113,4 +113,14 @@ ipcMain.on("update-content",(event,data)=>{
     file.setConteudo(data)
 })
 
-export { window }
+ipcMain.on(`display-app-menu`, function(e, args) {
+    if (window) {
+        menu.popup({
+        window: window,
+            x: args.x,
+            y: args.y
+        });
+    }
+});
+
+export { window , menu }

@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
-    <title id="title">GuiPython EDITOR</title>
+    <title>GuiPython EDITOR</title>
     <script> var exports = {} ; </script>
     <script src="./index.js"></script>
+    <script src="https://kit.fontawesome.com/1c9144b004.js" crossorigin="anonymous"></script>
+    <script src="./menu.js"></script>
     <link rel="stylesheet" href="./index.css" type="text/css"></link>
 </head>
 <body>
-    <textarea id="text" onkeyup="handleChangeText(event.target)"></textarea>
+    <div id="menu-bar">
+        <div class="left" role="menu">
+            <button class="menubar-btn" id="menu-btn"><i class="fas fa-bars"></i></button>
+            <h5 id="title">GuiPython EDITOR</h5>
+        </div>
+        <div class="right">
+            <button class="menubar-btn" id="minimize-btn"><i class="fas fa-window-minimize"></i></button>
+            <button class="menubar-btn" id="max-unmax-btn"><i class="far fa-square"></i></button>
+            <button class="menubar-btn" id="close-btn"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div class="container">
+        <textarea id="text" onkeyup="handleChangeText(event.target)"></textarea>
+    </div>
 </body>
